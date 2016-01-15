@@ -18,7 +18,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     Button btMessenger  ;
-
+    Intent intent =  new Intent();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +26,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btMessenger = (Button)findViewById(R.id.messenger);
         btMessenger.setOnClickListener(this);
         findViewById(R.id.aidl).setOnClickListener(this);
+        findViewById(R.id.bundle).setOnClickListener(this);
+        intent.setClass(MainActivity.this,BundleService.class);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopService(intent);
     }
 
     @Override
@@ -36,6 +44,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.aidl:
                 startActivity(new Intent(MainActivity.this,BookManagerActivity.class));
+                break;
+            case R.id.bundle:
+                Bundle bundle = new Bundle();
+                bundle.putString("msg","bundle msg from client");
+//                Intent intent =  new Intent(MainActivity.this,BundleService.class);
+                intent.putExtras(bundle);
+                startService(intent);
                 break;
         }
 

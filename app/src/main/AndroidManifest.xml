@@ -27,6 +27,8 @@
             android:enabled="true"
             android:exported="true"
             android:process=":remote" />
+
+
         <service
             android:name=".BookManagerService"
             android:enabled="true"
@@ -36,7 +38,12 @@
         <activity
             android:name=".BookManagerActivity"
             android:label="@string/title_activity_book_manager"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <service
+            android:name=".BundleService"
+            android:enabled="true"
+            android:exported="true"/>
     </application>
 
 </manifest>

@@ -16,6 +16,7 @@ import java.util.List;
 public class BookManagerActivity extends AppCompatActivity {
 
     private IBookManager bookManager;
+
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {

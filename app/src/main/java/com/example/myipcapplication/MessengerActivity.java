@@ -36,7 +36,6 @@ public class MessengerActivity extends AppCompatActivity {
             Bundle bundle = new Bundle() ;
             bundle.putString("msg","client send to service");
             msg.setData(bundle);
-
             // ****************************************
             msg.replyTo = mGetReplyMessenger;
             try{
@@ -45,10 +44,8 @@ public class MessengerActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-
         @Override
         public void onServiceDisconnected(ComponentName name) {
-
         }
     };
 

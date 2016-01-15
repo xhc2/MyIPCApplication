@@ -18,12 +18,12 @@ public class MessengerService extends Service {
     }
 
 
-
     private Messenger MyMessager = new Messenger(new MessengerHandler(MessengerService.this));
 
     private static class MessengerHandler extends Handler {
         Context context;
-        MessengerHandler(Context ctx){
+
+        MessengerHandler(Context ctx) {
             context = ctx;
         }
 
@@ -31,25 +31,22 @@ public class MessengerService extends Service {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 1:
-
-                    Toast.makeText(context,"MessengerService : "+msg.getData().get("msg") , Toast.LENGTH_SHORT).show();
-
+                    Toast.makeText(context, "MessengerService : " + msg.getData().get("msg"), Toast.LENGTH_SHORT).show();
                     Messenger client = msg.replyTo;
-                    Message replyMessage = Message.obtain(null,2);
+                    Message replyMessage = Message.obtain(null, 2);
                     Bundle bundle = new Bundle();
-                    bundle.putString("reply","我是服务端,消息收到");
+                    bundle.putString("reply", "我是服务端,消息收到");
                     replyMessage.setData(bundle);
-                    try{
+                    try {
                         client.send(replyMessage);
-                    }catch(Exception e){
+                    } catch (Exception e) {
 
                     }
                     break;
                 default:
-                super.handleMessage(msg);
+                    super.handleMessage(msg);
                     break;
             }
-
         }
     }
 
